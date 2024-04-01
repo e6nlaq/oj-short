@@ -3,11 +3,11 @@ import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import { rmSync } from 'fs';
 
-import startup from './base/startup';
-import packageJson from '../package.json';
-import { error, info } from './cli/log';
-import { oj } from './base/shell';
-import { write_info } from './base/config';
+import startup from './base/startup.js';
+import packageJson from '../package.json' assert { type: 'json' };
+import { error, info } from './cli/log.js';
+import { oj } from './base/shell.js';
+import { write_info } from './base/config.js';
 
 // TODO: 説明書く
 const program = new Command()

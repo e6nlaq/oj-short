@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { Command } from '@commander-js/extra-typings';
 
-import { load_config, RunConfig } from './base/config';
-import get_ext from './base/get_ext';
-import { error, info } from './cli/log';
-import { system } from './base/shell';
+import { load_config, RunConfig } from './base/config.js';
+import get_ext from './base/get_ext.js';
+import { error, info } from './cli/log.js';
+import { system } from './base/shell.js';
 import { existsSync } from 'fs';
 
 const file_command: Record<string, RunConfig> = {
@@ -74,12 +74,14 @@ const program = new Command()
 
         // コンパイル
         if (file_command[ext].build !== '') {
-            arg.push(file_command[ext].build.replace('$0', path));
+            arg.push(file_command[ext].build.replace('$0', '"' + path + '"'));
             arg.push('&&');
         }
 
         // 実行
-        arg.push(`oj t -c "${file_command[ext].run.replace('$0', path)}"`);
+        arg.push(
+            `oj t -c "${file_command[ext].run.replace('$0', '"' + path + '"')}"`
+        );
 
         if (option.e !== false) {
             arg.push(`-e 1e-${option.e}`);

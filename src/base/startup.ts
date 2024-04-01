@@ -1,9 +1,9 @@
 import updateNotifier from 'update-notifier';
-import packageJson from '../../package.json';
+import packageJson from '../../package.json' assert { type: 'json' };
 
-import exist_oj from './exist_oj';
-import { error, info } from '../cli/log';
-import { init_config } from './config';
+import exist_oj from './exist_oj.js';
+import { error, info } from '../cli/log.js';
+import { init_config } from './config.js';
 
 export default function startup() {
     updateNotifier({ pkg: packageJson }).notify();
