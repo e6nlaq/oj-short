@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import { rmSync } from 'fs';
