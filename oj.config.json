@@ -1,0 +1,11 @@
+{
+    "run": {
+        "py": {
+            "build": "",
+            "run": "python3 $0",
+            "lang": 5063
+        }
+    },
+    "submit": true,
+    "problem_url": "https://atcoder.jp/contests/abc256/tasks/abc256_a"
+}
