@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --no-warnings
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
 import { rmSync } from 'fs';

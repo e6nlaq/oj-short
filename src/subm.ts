@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env -S node --no-warnings
 import { Command } from '@commander-js/extra-typings';
 
 import { load_config, RunConfig } from './base/config.js';
@@ -6,6 +6,7 @@ import get_ext from './base/get_ext.js';
 import { error, info } from './cli/log.js';
 import { system } from './base/shell.js';
 import { existsSync } from 'fs';
+import startup from './base/startup.js';
 
 const file_command: Record<string, RunConfig> = {
     cpp: {
@@ -38,6 +39,8 @@ const program = new Command()
     .option('-y, --yes', '', false)
     .option('-t, --only-test', '', false)
     .action((path, option) => {
+        startup();
+
         // ファイル存在チェック
         if (!existsSync(path)) {
             error(`${path} does not exist`);
