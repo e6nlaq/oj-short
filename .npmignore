@@ -1,7 +1,7 @@
-src
+./src
 .gitignore
 yarn.lock
-node_modules
+./node_modules
 oj.config.json
 .prettierrc
 .eslintrc.cjs
