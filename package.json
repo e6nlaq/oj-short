@@ -1,6 +1,6 @@
 {
     "name": "oj-short",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "module",
     "license": "MIT",
     "devDependencies": {
