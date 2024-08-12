@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --no-warnings
+#!/usr/bin/env bun
 import { Command } from '@commander-js/extra-typings';
 
 import { load_config, RunConfig } from './base/config.js';

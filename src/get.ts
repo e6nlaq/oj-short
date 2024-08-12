@@ -1,7 +1,7 @@
-#!/usr/bin/env -S node --no-warnings
+#!/usr/bin/env bun
 import { Command } from '@commander-js/extra-typings';
 import chalk from 'chalk';
-import { rmSync } from 'fs';
+import { rmSync, existsSync, mkdirSync } from 'fs';
 
 import startup from './base/startup.js';
 import packageJson from '../package.json' assert { type: 'json' };
@@ -29,6 +29,15 @@ const program = new Command()
             url = `https://codeforces.com/gym/${contests}/problem/${problem_id}`;
         } else if (site_code === 'yc' || site_code === 'yukicoder') {
             url = `https://yukicoder.me/problems/no/${contests}`;
+            ok_problem_undefined = true;
+        } else if (site_code === 'aoj' || site_code === 'aizuonlinejudge') {
+            url = `https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=${contests}`;
+            ok_problem_undefined = true;
+        } else if (site_code === 'hr' || site_code === 'hackerrank') {
+            url = `https://www.hackerrank.com/challenges/${contests}/problem`;
+            ok_problem_undefined = true;
+        } else if (site_code === 'lc' || site_code === 'librarychecker') {
+            url = `https://judge.yosupo.jp/problem/${contests}`;
             ok_problem_undefined = true;
         } else if (site_code === 'url') {
             url = contests;
@@ -58,6 +67,10 @@ const program = new Command()
         rmSync('test', { recursive: true, force: true });
 
         oj(['d', url]);
+
+        if (!existsSync('test')) {
+            mkdirSync('test', { recursive: true });
+        }
     });
 
 program.parse();
