@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import { rmSync, existsSync, mkdirSync } from 'fs';
 
 import startup from './base/startup.js';
-import packageJson from '../package.json' assert { type: 'json' };
+import packageJson from '../package.json' with { type: 'json' };
 import { error, info } from './cli/log.js';
 import { oj } from './base/shell.js';
 import { write_info } from './base/config.js';
@@ -21,8 +21,7 @@ const program = new Command()
         let submit = false;
         let url = 'https://example.com';
         if (site_code === 'ac' || site_code === 'atcoder') {
-            url = `https://atcoder.jp/contests/${contests}/tasks/${contests.replace('-', '_')}_${problem_id}`;
-            submit = true;
+            url = `https://atcoder.jp/contests/${contests}/tasks/${contests.replaceAll('-', '_')}_${problem_id}`;
         } else if (site_code === 'cf' || site_code === 'codeforces') {
             url = `https://codeforces.com/contest/${contests}/problem/${problem_id}`;
         } else if (site_code === 'cf_gym' || site_code === 'codeforces_gym') {
@@ -43,9 +42,6 @@ const program = new Command()
             url = contests;
             ok_problem_undefined = true;
 
-            if (contests.match(/^https?:\/\/atcoder\.jp\/contests\/*/)) {
-                submit = true;
-            }
         } else {
             error('Invalid site code');
             process.exit(1);
