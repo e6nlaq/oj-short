@@ -5,5 +5,5 @@ export function error(message: string) {
 }
 
 export function info(message: string) {
-    console.log(`[${chalk.blue("INFO")}] ${message}`);
+    console.log(`[${chalk.cyan("SHORT")}] ${message}`);
 }

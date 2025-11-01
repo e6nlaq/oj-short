@@ -6,7 +6,7 @@ import { init_config } from "./config.js";
 import exist_oj from "./exist_oj.js";
 
 export default function startup() {
-    info(`oj-short v${packageJson.version}`);
+    info(chalk.bold(`oj-short v${packageJson.version} / by e6nlaq`));
 
     if (typeof Bun === "undefined") {
         error("This tool only works on Bun");
@@ -26,7 +26,7 @@ export default function startup() {
     if (!exist_oj()) {
         error("oj is not installed on the device.");
         info(
-            "See https://github.com/online-judge-tools/oj/blob/master/docs/INSTALL.md",
+            "See https://github.com/online-judge-tools/oj/blob/master/docs/INSTALL.md to install oj.",
         );
         process.exit(1);
     }
