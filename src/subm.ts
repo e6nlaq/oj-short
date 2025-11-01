@@ -23,11 +23,11 @@ const file_command: Record<string, RunConfig> = {
 	},
 	js: {
 		build: "",
-		run: "node $0",
+		run: "bun $0",
 	},
 	ts: {
-		build: "tsc $0 --outfile a.js",
-		run: "node a.js",
+		build: "tsc $0 --noEmit",
+		run: "bun $0",
 	},
 };
 
