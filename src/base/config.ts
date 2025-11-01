@@ -1,5 +1,3 @@
-import * as fs from "node:fs";
-
 export interface Config {
 	run: Record<string, RunConfig>;
 	submit: boolean;
@@ -12,28 +10,28 @@ export interface RunConfig {
 	lang?: number;
 }
 
-export function load_config(): Config {
-	init_config();
+export async function load_config(): Promise<Config> {
+	await init_config();
 
-	const config = fs.readFileSync("oj.config.json", "utf8");
+	const config = (await Bun.file("oj.config.json").text()) as any;
 
 	return JSON.parse(config);
 }
 
-export function write_config(config: Config): void {
-	fs.writeFileSync("oj.config.json", JSON.stringify(config, null, 4));
+export async function write_config(config: Config): Promise<void> {
+	await Bun.write("oj.config.json", JSON.stringify(config, null, 4));
 }
 
-export function write_info(submit: boolean, url: string) {
-	const config = load_config();
+export async function write_info(submit: boolean, url: string) {
+	const config = await load_config();
 
 	config.submit = submit;
 	config.problem_url = url;
-	write_config(config);
+	await write_config(config);
 }
 
-export function init_config() {
-	if (fs.existsSync("oj.config.json")) {
+export async function init_config() {
+	if (await Bun.file("oj.config.json").exists()) {
 		return;
 	}
 
@@ -43,5 +41,5 @@ export function init_config() {
 		problem_url: "https://example.com",
 	};
 
-	fs.writeFileSync("oj.config.json", JSON.stringify(default_config));
+	await Bun.write("oj.config.json", JSON.stringify(default_config));
 }
