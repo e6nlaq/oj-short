@@ -1,7 +1,5 @@
-import which from 'which';
-
 export default function exist_oj(): boolean {
-    const path = which.sync('oj', { nothrow: true });
+	const path = Bun.which("oj");
 
-    return typeof path === 'string';
+	return path !== null;
 }
