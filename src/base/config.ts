@@ -13,7 +13,7 @@ export interface RunConfig {
 export async function load_config(): Promise<Config> {
 	await init_config();
 
-	const config = (await Bun.file("oj.config.json").text()) as any;
+	const config = await Bun.file("oj.config.json").text();
 
 	return JSON.parse(config);
 }
