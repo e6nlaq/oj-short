@@ -37,7 +37,7 @@ const program = new Command()
 	.option("-s, --strict", "", false)
 	.option("-y, --yes", "", false)
 	.option("-t, --only-test", "", false)
-	.action((path, option) => {
+	.action(async (path, option) => {
 		startup();
 
 		// ファイル存在チェック
@@ -47,7 +47,7 @@ const program = new Command()
 		}
 
 		// Config読み込み
-		const config = load_config();
+		const config = await load_config();
 		const command_user = config.run;
 		const keys = Object.keys(command_user);
 		for (let i = 0; i < keys.length; ++i) {
