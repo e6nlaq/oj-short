@@ -55,6 +55,5 @@
   "bin": {
     "get": "src/get.ts",
     "subm": "src/subm.ts"
-  },
-  "private": true
+  }
 }
