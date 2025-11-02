@@ -2,13 +2,13 @@
 import { existsSync } from "node:fs";
 import { Command } from "@commander-js/extra-typings";
 import chalk from "chalk";
-import { load_config, type RunConfig } from "./base/config.js";
+import { type Config, load_config } from "./base/config.js";
 import get_ext from "./base/get_ext.js";
 import { system } from "./base/shell.js";
 import startup from "./base/startup.js";
 import { error, info } from "./cli/log.js";
 
-const file_command: Record<string, RunConfig> = {
+const file_command: Config["run"] = {
     cpp: {
         build: "g++ $0 --std=c++23 -I . -O2",
         run: "./a.out",
@@ -61,7 +61,7 @@ const program = new Command()
             option.onlyTest = true;
         }
 
-        const ext = get_ext(path);
+        const ext = get_ext(path).toLowerCase();
         if (file_command[ext] === undefined) {
             error(`Unknown extensions: ${chalk.bold.red(ext)}`);
             info("Add the command to `oj.config.json`.");

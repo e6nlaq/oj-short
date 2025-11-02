@@ -7,8 +7,17 @@ const runConfigSchema = z.strictObject({
     lang: z.int().positive().optional(),
 });
 
+const extSchema = z.union([
+    z.literal(""),
+    z
+        .string()
+        .regex(/^\.[a-zA-Z0-9]+$/, "Extensions must start with a dot")
+        .trim()
+        .toLowerCase(),
+]);
+
 const configSchema = z.strictObject({
-    run: z.record(z.string().trim().toLowerCase(), runConfigSchema),
+    run: z.record(extSchema, runConfigSchema),
     submit: z.boolean(),
     problem_url: z.url({ protocol: /^(https|http)$/ }),
 });
@@ -21,9 +30,20 @@ export async function load_config(): Promise<Config> {
     await init_config();
 
     const configText = await Bun.file("oj.config.json").text();
-    const result = configSchema.safeParse(JSON.parse(configText));
+    let configJson: Config;
+    try {
+        configJson = JSON.parse(configText);
+    } catch (e: unknown) {
+        error(`Config is not JSON.`);
+        if (e instanceof Error) {
+            error(e.message);
+        }
+        process.exit(1);
+    }
+
+    const result = configSchema.safeParse(configJson);
     if (!result.success) {
-        error(`Invalid config.`);
+        error(`Invalid config.\n`);
         const pretty = z.prettifyError(result.error);
         const logs = pretty.split("\n");
         for (let i = 0; i < logs.length; ++i) {
