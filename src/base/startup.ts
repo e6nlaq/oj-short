@@ -31,7 +31,7 @@ export default function startup() {
         process.exit(1);
     }
 
-    info("oj is installed on the device");
+    info("oj is installed on the device.");
 
     init_config();
 }
