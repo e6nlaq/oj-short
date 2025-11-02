@@ -1,5 +1,7 @@
 # oj-short
 
+English | [日本語](README.ja.md)
+
 `oj-short` is a command-line interface (CLI) tool designed to streamline the workflow of competitive programming. It acts as a convenient wrapper around [online-judge-tools](https://github.com/online-judge-tools/oj), simplifying the process of downloading problems, testing code, and submitting solutions.
 
 This tool is built with TypeScript and runs **only** on the [Bun](https://bun.sh/) runtime.

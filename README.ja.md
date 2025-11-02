@@ -1,5 +1,7 @@
 # oj-short
 
+[English](README.md) | 日本語
+
 `oj-short`は、競技プログラミングのワークフローを効率化するために設計されたコマンドラインインターフェース（CLI）ツールです。[online-judge-tools/oj-tools](https://github.com/online-judge-tools/oj-tools)の便利なラッパーとして機能し、問題のダウンロード、コードのテスト、解答の提出プロセスを簡素化します。
 
 このツールはTypeScriptで構築されており、[Bun](https://bun.sh/)ランタイム上で**のみ**動作します。
