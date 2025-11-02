@@ -1,9 +1,16 @@
-import { spawn } from 'child_process';
+import { spawn } from "node:child_process";
+import { info } from "../cli/log";
 
 export const oj = (args: string[]) =>
-    spawn('oj', args, { stdio: 'inherit', shell: true });
+    Bun.spawnSync(["oj", ...args], { stdout: "inherit", stderr: "inherit" });
 
 export function system(command: string) {
-    const split = command.split(' ');
-    spawn(split[0], split.slice(1), { stdio: 'inherit', shell: true });
+    const cmd = command.split(" ");
+    if (cmd.includes("&&")) {
+        info("Run command with spawn.");
+        spawn(cmd[0], cmd.slice(1), { stdio: "inherit", shell: true });
+    } else {
+        info("Run command with Bun.spawnSync.");
+        Bun.spawnSync(cmd, { stdout: "inherit", stderr: "inherit" });
+    }
 }

@@ -1,34 +1,60 @@
 {
-    "name": "oj-short",
-    "version": "1.0.6",
-    "type": "module",
-    "license": "MIT",
-    "devDependencies": {
-        "@types/node": "^20.17.30",
-        "@types/update-notifier": "^6.0.8",
-        "@types/which": "^3.0.4",
-        "@typescript-eslint/eslint-plugin": "^7.18.0",
-        "@typescript-eslint/parser": "^7.18.0",
-        "eslint": "^8.57.1",
-        "prettier": "^3.5.3",
-        "rimraf": "^6.0.1",
-        "typescript": "^5.8.3"
-    },
-    "scripts": {
-        "build": "rimraf dist /Q /S && tsc",
-        "prepublishOnly": "bun run build",
-        "format": "prettier --write ./src/**/*.ts",
-        "lint": "eslint ./src/**/*.ts"
-    },
-    "dependencies": {
-        "@commander-js/extra-typings": "^12.1.0",
-        "chalk": "^5.4.1",
-        "commander": "^12.1.0",
-        "update-notifier": "^7.3.1",
-        "which": "^4.0.0"
-    },
-    "bin": {
-        "get": "dist/src/get.js",
-        "subm": "dist/src/subm.js"
-    }
+  "name": "oj-short",
+  "version": "2.0.0",
+  "description": "Short commands for oj",
+  "author": {
+    "name": "e6nlaq",
+    "url": "https://github.com/e6nlaq"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e6nlaq/oj-short.git"
+  },
+  "bugs": {
+    "url": "https://github.com/e6nlaq/oj-short/issues"
+  },
+  "homepage": "https://github.com/e6nlaq/oj-short#readme",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "2.3.2",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@types/bun": "^1.3.1",
+    "@types/node": "^24.9.2",
+    "@types/update-notifier": "^6.0.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "rimraf": "^6.1.0",
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "build": "rimraf dist /Q /S && tsc",
+    "prepublishOnly": "bun run build",
+    "format": "biome format --write ./src/**/*.ts",
+    "check": "biome check --write ./src/**/*.ts",
+    "check:unsafe": "biome check --write --unsafe ./src/**/*.ts",
+    "lint": "biome lint ./src/**/*.ts",
+    "get": "bun run src/get.ts",
+    "subm": "bun run src/subm.ts",
+    "prepare": "husky",
+    "commitmsg": "commitlint -e $GIT_PARAMS"
+  },
+  "lint-staged": {
+    "./src/**/*.ts": [
+      "bun check"
+    ]
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "^14.0.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "update-notifier": "^7.3.1",
+    "zod": "^4.1.12"
+  },
+  "bin": {
+    "get": "src/get.ts",
+    "subm": "src/subm.ts"
+  },
+  "private": true
 }
