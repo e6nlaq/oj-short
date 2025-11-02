@@ -76,7 +76,10 @@ const program = new Command()
         // 引数構築
 
         // コンパイル
-        if (file_command[ext].build !== "") {
+        if (
+            file_command[ext].build !== undefined &&
+            file_command[ext].build !== ""
+        ) {
             arg.push(file_command[ext].build.replace("$0", `"${path}"`));
             arg.push("&&");
         }
