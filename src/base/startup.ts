@@ -1,9 +1,9 @@
 import chalk from "chalk";
 import updateNotifier from "update-notifier";
 import packageJson from "../../package.json";
-import { error, info } from "../cli/log.js";
-import { init_config } from "./config.js";
-import exist_oj from "./exist_oj.js";
+import { error, info } from "../cli/log";
+import { init_config } from "./config";
+import exist_oj from "./exist_oj";
 
 export default function startup() {
     info(chalk.bold(`oj-short v${packageJson.version} / by e6nlaq`));
