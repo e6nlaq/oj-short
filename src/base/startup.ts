@@ -5,7 +5,7 @@ import { error, info } from "../cli/log";
 import { init_config } from "./config";
 import exist_oj from "./exist_oj";
 
-export default function startup() {
+export default async function startup() {
     info(chalk.bold(`oj-short v${packageJson.version} / by e6nlaq`));
 
     if (typeof Bun === "undefined") {
@@ -33,5 +33,5 @@ export default function startup() {
 
     info("oj is installed on the device.");
 
-    init_config();
+    await init_config();
 }

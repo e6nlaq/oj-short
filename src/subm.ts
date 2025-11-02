@@ -42,7 +42,7 @@ const program = new Command()
     .option("-y, --yes", "", false)
     .option("-t, --only-test", "", false)
     .action(async (path, option) => {
-        startup();
+        await startup();
 
         // ファイル存在チェック
         if (!existsSync(path)) {

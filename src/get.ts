@@ -13,8 +13,8 @@ const program = new Command()
     .name("get")
     .version(packageJson.version)
     .arguments("<site-code> <contests> [problem-id]")
-    .action((site_code, contests, problem_id) => {
-        startup();
+    .action(async (site_code, contests, problem_id) => {
+        await startup();
 
         let ok_problem_undefined = false;
         const submit = false;
@@ -52,7 +52,7 @@ const program = new Command()
 
         info(`URL resolved: ${url}`);
 
-        write_info(submit, url);
+        await write_info(submit, url);
 
         info(
             `Submit problem?: ${submit ? chalk.bold.green("Yes") : chalk.bold.red("No")}`,
