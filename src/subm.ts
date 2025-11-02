@@ -113,4 +113,9 @@ const program = new Command()
         info(`Run command: ${arg.join(" ")}`);
         system(arg.join(" "));
     });
+program.configureOutput({
+    writeErr(str) {
+        error(str);
+    },
+});
 program.parse();

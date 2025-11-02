@@ -66,5 +66,9 @@ const program = new Command()
             mkdirSync("test", { recursive: true });
         }
     });
-
+program.configureOutput({
+    writeErr(str) {
+        error(str);
+    },
+});
 program.parse();
