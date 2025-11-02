@@ -2,6 +2,7 @@
 import { existsSync } from "node:fs";
 import { Command } from "@commander-js/extra-typings";
 import chalk from "chalk";
+import packageJson from "../package.json";
 import { type Config, load_config } from "./base/config";
 import get_ext from "./base/get_ext";
 import { system } from "./base/shell";
@@ -33,6 +34,8 @@ const file_command: Config["run"] = {
 };
 
 const program = new Command()
+    .name("subm")
+    .version(packageJson.version)
     .argument("<filepath>")
     .option("-e [e]", "", false)
     .option("-s, --strict", "", false)
