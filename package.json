@@ -35,7 +35,7 @@
     "lint": "biome lint ./src/**/*.ts",
     "get": "bun run src/get.ts",
     "subm": "bun run src/subm.ts",
-    "prepare": "husky",
+    "prepare": "bunx husky",
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },
   "lint-staged": {
