@@ -41,7 +41,7 @@ const program = new Command()
             url = contests;
             ok_problem_undefined = true;
         } else {
-            error("Invalid site code");
+            error(`Invalid site code: ${chalk.bold.red(site_code)}`);
             process.exit(1);
         }
 
