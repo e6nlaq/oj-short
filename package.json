@@ -1,8 +1,20 @@
 {
   "name": "oj-short",
   "version": "2.0.0",
-  "type": "module",
+  "author": {
+    "name": "e6nlaq",
+    "url": "https://github.com/e6nlaq"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e6nlaq/oj-short.git"
+  },
+  "bugs": {
+    "url": "https://github.com/e6nlaq/oj-short/issues"
+  },
+  "homepage": "https://github.com/e6nlaq/oj-short#readme",
+  "type": "module",
   "devDependencies": {
     "@biomejs/biome": "2.3.2",
     "@commitlint/cli": "^20.1.0",
@@ -23,6 +35,7 @@
     "check:unsafe": "biome check --write --unsafe ./src/**/*.ts",
     "lint": "biome lint ./src/**/*.ts",
     "get": "bun run src/get.ts",
+    "subm": "bun run src/subm.ts",
     "prepare": "husky",
     "commitmsg": "commitlint -e $GIT_PARAMS"
   },
