@@ -9,7 +9,7 @@ export default function startup() {
     info(chalk.bold(`oj-short v${packageJson.version} / by e6nlaq`));
 
     if (typeof Bun === "undefined") {
-        error("This tool only works on Bun");
+        error("This tool only works on Bun.");
         process.exit(1);
     }
 
