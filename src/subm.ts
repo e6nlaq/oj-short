@@ -1,12 +1,12 @@
 #!/usr/bin/env bun
 import { existsSync } from "node:fs";
 import { Command } from "@commander-js/extra-typings";
+import chalk from "chalk";
 import { load_config, type RunConfig } from "./base/config.js";
 import get_ext from "./base/get_ext.js";
 import { system } from "./base/shell.js";
 import startup from "./base/startup.js";
 import { error, info } from "./cli/log.js";
-import chalk from "chalk";
 
 const file_command: Record<string, RunConfig> = {
     cpp: {
