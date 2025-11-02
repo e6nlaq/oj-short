@@ -1,21 +1,39 @@
-export interface Config {
-    run: Record<string, RunConfig>;
-    submit: boolean;
-    problem_url: string;
-}
+import { z } from "zod";
+import { error } from "../cli/log";
 
-export interface RunConfig {
-    build: string;
-    run: string;
-    lang?: number;
-}
+const runConfigSchema = z.strictObject({
+    build: z.string().optional(),
+    run: z.string(),
+    lang: z.int().positive().optional(),
+});
+
+const configSchema = z.strictObject({
+    run: z.record(z.string().trim().toLowerCase(), runConfigSchema),
+    submit: z.boolean(),
+    problem_url: z.url({ protocol: /^(https|http)$/ }),
+});
+
+export type Config = z.infer<typeof configSchema>;
+
+export type RunConfig = z.infer<typeof runConfigSchema>;
 
 export async function load_config(): Promise<Config> {
     await init_config();
 
-    const config = await Bun.file("oj.config.json").text();
+    const configText = await Bun.file("oj.config.json").text();
+    const result = configSchema.safeParse(JSON.parse(configText));
+    if (!result.success) {
+        error(`Invalid config.`);
+        const pretty = z.prettifyError(result.error);
+        const logs = pretty.split("\n");
+        for (let i = 0; i < logs.length; ++i) {
+            error(logs[i]);
+        }
 
-    return JSON.parse(config);
+        process.exit(1);
+    }
+
+    return result.data;
 }
 
 export async function write_config(config: Config): Promise<void> {
