@@ -29,8 +29,6 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "build": "rimraf dist /Q /S && tsc",
-    "prepublishOnly": "bun run build",
     "format": "biome format --write ./src/**/*.ts",
     "check": "biome check --write ./src/**/*.ts",
     "check:unsafe": "biome check --write --unsafe ./src/**/*.ts",
