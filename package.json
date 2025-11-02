@@ -41,8 +41,7 @@
   },
   "lint-staged": {
     "./src/**/*.ts": [
-      "bunx biome lint --fix",
-      "bunx biome format --fix"
+      "bun check"
     ]
   },
   "dependencies": {
