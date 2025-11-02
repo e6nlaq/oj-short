@@ -3,10 +3,10 @@ import { existsSync, mkdirSync, rmSync } from "node:fs";
 import { Command } from "@commander-js/extra-typings";
 import chalk from "chalk";
 import packageJson from "../package.json";
-import { write_info } from "./base/config.js";
-import { oj } from "./base/shell.js";
-import startup from "./base/startup.js";
-import { error, info } from "./cli/log.js";
+import { write_info } from "./base/config";
+import { oj } from "./base/shell";
+import startup from "./base/startup";
+import { error, info } from "./cli/log";
 
 // TODO: 説明書く
 const program = new Command()

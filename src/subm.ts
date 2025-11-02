@@ -2,11 +2,11 @@
 import { existsSync } from "node:fs";
 import { Command } from "@commander-js/extra-typings";
 import chalk from "chalk";
-import { type Config, load_config } from "./base/config.js";
-import get_ext from "./base/get_ext.js";
-import { system } from "./base/shell.js";
-import startup from "./base/startup.js";
-import { error, info } from "./cli/log.js";
+import { type Config, load_config } from "./base/config";
+import get_ext from "./base/get_ext";
+import { system } from "./base/shell";
+import startup from "./base/startup";
+import { error, info } from "./cli/log";
 
 const file_command: Config["run"] = {
     cpp: {
