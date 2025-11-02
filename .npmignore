@@ -4,3 +4,10 @@ bun.lockb
 oj.config.json
 biome.json
 bin/
+test/
+GEMINI.md
+build.ts
+README.ja.md
+commitlint.config.js
+.husky
+.vscode
