@@ -16,7 +16,7 @@
 
 ## 前提条件
 
-`oj-short`を使用する前に、以下をインストールする必要があります：
+`oj-short`を使用する前に、以下をインストールする必要があります:
 
 1. **[Bun](https://bun.sh/)**: このプロジェクトはBunランタイムを使用します。
 2. **[online-judge-tools](https://github.com/online-judge-tools/oj)**: オンラインジャッジと対話するためのコア依存関係です。
@@ -52,6 +52,22 @@ get <site> <contest> [problem]
 **引数:**
 
 - `<site>`: オンラインジャッジの短いコード（例: `ac` for AtCoder, `cf` for Codeforces）。
+
+  - `ac`, `atcoder`: AtCoder
+
+  - `cf`, `codeforces`: Codeforces
+
+  - `cf_gym`, `codeforces_gym`: Codeforces Gym
+
+  - `yc`, `yukicoder`: Yukicoder
+
+  - `aoj`, `aizuonlinejudge`: Aizu Online Judge
+
+  - `hr`, `hackerrank`: HackerRank
+
+  - `lc`, `librarychecker`: Library Checker
+
+  - `url`: 直接URLを入力
 - `<contest>`: コンテストID。
 - `[problem]`: 問題ID（一部のサイトではオプション）。
 
@@ -62,7 +78,7 @@ get <site> <contest> [problem]
 get ac abc100 a
 ```
 
-このコマンドは以下を実行します：
+このコマンドは以下を実行します:
 
 1. URLを解決します: `https://atcoder.jp/contests/abc100/tasks/abc100_a`
 2. `oj.config.json`を問題のURLで更新します。

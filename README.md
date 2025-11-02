@@ -52,6 +52,22 @@ get <site> <contest> [problem]
 **Arguments:**
 
 - `<site>`: A short code for the online judge (e.g., `ac` for AtCoder, `cf` for Codeforces).
+
+  - `ac`, `atcoder`: AtCoder
+
+  - `cf`, `codeforces`: Codeforces
+
+  - `cf_gym`, `codeforces_gym`: Codeforces Gym
+
+  - `yc`, `yukicoder`: Yukicoder
+
+  - `aoj`, `aizuonlinejudge`: Aizu Online Judge
+
+  - `hr`, `hackerrank`: HackerRank
+
+  - `lc`, `librarychecker`: Library Checker
+
+  - `url`: Direct URL input
 - `<contest>`: The contest ID.
 - `[problem]`: The problem ID (optional for some sites).
 
