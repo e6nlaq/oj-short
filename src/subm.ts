@@ -6,6 +6,7 @@ import get_ext from "./base/get_ext.js";
 import { system } from "./base/shell.js";
 import startup from "./base/startup.js";
 import { error, info } from "./cli/log.js";
+import chalk from "chalk";
 
 const file_command: Record<string, RunConfig> = {
     cpp: {
@@ -62,7 +63,7 @@ const program = new Command()
 
         const ext = get_ext(path);
         if (file_command[ext] === undefined) {
-            error("Unidentified extensions");
+            error(`Unknown extensions: ${chalk.bold.red(ext)}`);
             info("Add the command to `oj.config.json`.");
             process.exit(1);
         }
