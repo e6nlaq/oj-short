@@ -25,7 +25,7 @@ export default function startup() {
 
     if (!exist_oj()) {
         error("oj is not installed on the device.");
-        info(
+        error(
             "See https://github.com/online-judge-tools/oj/blob/master/docs/INSTALL.md to install oj.",
         );
         process.exit(1);
