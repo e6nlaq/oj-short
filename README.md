@@ -2,15 +2,15 @@
 
 English | [日本語](README.ja.md)
 
-`oj-short` is a command-line interface (CLI) tool designed to streamline the workflow of competitive programming. It acts as a convenient wrapper around [online-judge-tools](https://github.com/online-judge-tools/oj), simplifying the process of downloading problems, testing code, and submitting solutions.
+`oj-short` is a command-line interface (CLI) tool designed to streamline the competitive programming workflow. It serves as a convenient wrapper for [online-judge-tools/oj-tools](https://github.com/online-judge-tools/oj-tools), simplifying the process of downloading problems, testing code, and submitting solutions.
 
 This tool is built with TypeScript and runs **only** on the [Bun](https://bun.sh/) runtime.
 
 ## Features
 
-- **Download Problems**: Quickly fetch problem details and sample test cases from various online judges like AtCoder, Codeforces, and more.
-- **Test Solutions**: Automatically test your code against the downloaded sample cases.
-- ~~**Submit Code**: Submit your solution directly from the command line.~~ This feature is currently disabled.
+- **Download Problems**: Quickly fetch problem details and sample test cases from various online judges like AtCoder, Codeforces, etc.
+- **Test Solutions**: Automatically test your code against downloaded sample cases.
+- **Submit Code**: Submit solutions directly from the command line. This works in some situations like AtCoder during contests.
 - **Customizable**: Configure custom build and run commands for any programming language.
 - **URL Resolution**: Supports generating contest URLs from concise identifiers.
 
@@ -19,21 +19,23 @@ This tool is built with TypeScript and runs **only** on the [Bun](https://bun.sh
 Before using `oj-short`, you need to install the following:
 
 1. **[Bun](https://bun.sh/)**: This project uses the Bun runtime.
-2. **[online-judge-tools](https://github.com/online-judge-tools/oj)**: The core dependency for interacting with online judges.
+2. **[online-judge-tools](https://github.com/online-judge-tools/oj)**: A core dependency for interacting with online judges.
 
     ```shell
     pip3 install online-judge-tools
+    # or use uv
+    uv tool install online-judge-tools
     ```
 
 ## Installation
 
-Install from npm registry:
+Install from the npm registry:
 
 ```shell
-bun install -g oj-short
+bun install -g oj-short@latest
 ```
 
-Alternatively, you can use the [pre-compiled binaries](https://github.com/e6nlaq/oj-short/releases).
+Or use the distributed [compiled binaries](https://github.com/e6nlaq/oj-short/releases).
 
 ## Usage
 
@@ -46,12 +48,12 @@ Downloads a problem and its test cases.
 **Command:**
 
 ```shell
-get <site> <contest> [problem]
+get <site> <contest> [problem] [options]
 ```
 
 **Arguments:**
 
-- `<site>`: A short code for the online judge (e.g., `ac` for AtCoder, `cf` for Codeforces).
+- `<site>`: Short code for the online judge (e.g., `ac` for AtCoder, `cf` for Codeforces).
 
   - `ac`, `atcoder`: AtCoder
 
@@ -68,8 +70,12 @@ get <site> <contest> [problem]
   - `lc`, `librarychecker`: Library Checker
 
   - `url`: Direct URL input
-- `<contest>`: The contest ID.
-- `[problem]`: The problem ID (optional for some sites).
+- `<contest>`: Contest ID.
+- `[problem]`: Problem ID (optional for some sites).
+
+**Options:**
+
+- `-s, --submit`: Enables submission.
 
 **Example:**
 
@@ -78,15 +84,15 @@ get <site> <contest> [problem]
 get ac abc100 a
 ```
 
-This command will:
+This command performs the following:
 
-1. Resolve the URL: `https://atcoder.jp/contests/abc100/tasks/abc100_a`
-2. Update `oj.config.json` with the problem URL.
-3. Create a `test` directory with the sample cases using `oj-tools`.
+1. Resolves the URL: `https://atcoder.jp/contests/abc100/tasks/abc100_a`
+2. Updates `oj.config.json` with the problem URL.
+3. Uses `oj-tools` to create a `test` directory containing sample cases.
 
 ### `subm`
 
-Tests your solution file ~~and submits it~~.
+Tests and submits a solution file.
 
 **Command:**
 
@@ -96,13 +102,13 @@ subm <filepath> [options]
 
 **Arguments:**
 
-- `<filepath>`: The path to your solution file.
+- `<filepath>`: Path to the solution file.
 
 **Options:**
 
-- `-s, --strict`: Run tests in strict mode (strict judgment of trailing spaces and newlines).
-- `-y, --yes`: Automatically answer "yes" to the submission confirmation.
-- `-t, --only-test`: Only run tests without submitting.
+- `-s, --strict`: Runs tests in strict mode (strictly judging trailing spaces and newlines).
+- `-y, --yes`: Automatically answers "yes" to submission confirmation.
+- `-t, --only-test`: Runs only tests without submitting.
 
 **Example:**
 
@@ -111,18 +117,18 @@ subm <filepath> [options]
 subm main.py --yes
 ```
 
-This command will:
+This command performs the following:
 
-1. Look up the run command for `.py` files in `oj.config.json`.
-2. Compile the code (if a build command is defined).
-3. Run tests using `oj t`.
-4. ~~Submit the solution using `oj s`.~~
+1. Searches `oj.config.json` for the execution command for `.py` files.
+2. Compiles the code (if a build command is defined).
+3. Runs tests using `oj t`.
+4. ~~Submits the solution using `oj s`.~~
 
 ## Configuration
 
 You can customize build and run commands by editing the `oj.config.json` file.
 
-The configuration file is in the following format:
+The configuration file format is as follows:
 
 ```json
 {
@@ -138,12 +144,12 @@ The configuration file is in the following format:
 }
 ```
 
-- `run`: An object mapping file extensions (e.g., `.py`, `.cpp`) to their corresponding build and run configurations.
-  - `build`: The command to compile your code. `$0` is a placeholder for the source file path.
-  - `run`: The command to execute your compiled code.
-  - `lang`: ~~The language ID for submission (specific to the online judge).~~ This is currently unnecessary.
-- `submit`: A boolean indicating whether submission is enabled. This is automatically managed by the `get` command.
-- `problem_url`: The URL of the current problem, managed by the `get` command.
+- `run`: Object mapping file extensions (e.g., `.py`, `.cpp`) to corresponding build and run settings.
+  - `build`: Command to compile the code. `$0` is a placeholder for the source file path.
+  - `run`: Command to execute the compiled code.
+  - `lang`: ~~Language ID for submission (online judge specific).~~ This is currently not needed.
+- `submit`: Boolean indicating whether submission is enabled. This is automatically managed by the `get` command.
+- `problem_url`: URL of the current problem. Managed by the `get` command.
 
 ## License
 
