@@ -208,3 +208,4 @@ $RECYCLE.BIN/
 dist/
 test/
 bin/
+dump/

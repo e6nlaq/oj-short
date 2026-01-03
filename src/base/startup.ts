@@ -12,6 +12,7 @@ export default async function startup() {
         error("This tool only works on Bun.");
         process.exit(1);
     }
+    info("Bun version:", Bun.version);
 
     const notifier = updateNotifier({
         pkg: packageJson,

@@ -10,24 +10,24 @@ import startup from "./base/startup";
 import { error, info } from "./cli/log";
 
 const file_command: Config["run"] = {
-    cpp: {
+    ".cpp": {
         build: "g++ $0 --std=c++23 -I . -O2",
         run: "./a.out",
     },
-    c: {
+    ".c": {
         build: "gcc $0",
         run: "./a.out",
     },
-    py: {
+    ".py": {
         build: "",
         run: "python3 $0",
         lang: 5055,
     },
-    js: {
+    ".js": {
         build: "",
         run: "bun $0",
     },
-    ts: {
+    ".ts": {
         build: "tsc $0 --noEmit",
         run: "bun $0",
     },
@@ -89,7 +89,10 @@ const program = new Command()
 
         // 実行
         arg.push(
-            `oj t -c "${file_command[ext].run.replace("$0", `"${path}"`)}"`,
+            "oj",
+            "t",
+            "-c",
+            `${file_command[ext].run.replace("$0", `"${path}"`)}`,
         );
 
         if (option.e !== false) {
@@ -97,7 +100,7 @@ const program = new Command()
         }
 
         if (!option.strict) {
-            arg.push("-S -N");
+            arg.push("-S", "-N");
         }
 
         // 提出
@@ -113,8 +116,8 @@ const program = new Command()
             }
         }
 
-        info(`Run command: ${arg.join(" ")}`);
-        system(arg.join(" "));
+        info("Run command:", arg);
+        system(arg);
     });
 program.configureOutput({
     writeErr(str) {

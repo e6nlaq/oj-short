@@ -13,11 +13,12 @@ const program = new Command()
     .name("get")
     .version(packageJson.version)
     .arguments("<site-code> <contests> [problem-id]")
-    .action(async (site_code, contests, problem_id) => {
+    .option("-s, --submit", "", false)
+    .action(async (site_code, contests, problem_id, options) => {
         await startup();
 
         let ok_problem_undefined = false;
-        const submit = false;
+        let submit = false;
         let url = "https://example.com";
         if (site_code === "ac" || site_code === "atcoder") {
             url = `https://atcoder.jp/contests/${contests}/tasks/${contests.replaceAll("-", "_")}_${problem_id}`;
@@ -48,6 +49,10 @@ const program = new Command()
         if (!ok_problem_undefined && problem_id === undefined) {
             error("Problem code is missing.");
             process.exit(1);
+        }
+
+        if (options.submit) {
+            submit = true;
         }
 
         info(`URL resolved: ${url}`);

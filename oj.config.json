@@ -2,10 +2,10 @@
     "run": {
         ".py": {
             "build": "",
-            "run": "python3 $0",
+            "run": "uv run $0",
             "lang": 5063
         }
     },
-    "submit": false,
+    "submit": true,
     "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
 }
