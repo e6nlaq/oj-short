@@ -10,7 +10,7 @@
 
 - **問題のダウンロード**: AtCoder、Codeforcesなどのさまざまなオンラインジャッジから、問題の詳細とサンプルテストケースを素早く取得します。
 - **解答のテスト**: ダウンロードしたサンプルケースに対して、あなたのコードを自動的にテストします。
-- ~~**コードの提出**: コマンドラインから直接、解答を提出します。~~ 現在この機能は無効化されています。
+- **コードの提出**: コマンドラインから直接、解答を提出します。これはコンテスト中のAtCoderのような一部の状況で動作します。
 - **カスタマイズ可能**: あらゆるプログラミング言語に対して、カスタムのビルドコマンドと実行コマンドを設定できます。
 - **URL解決**: 簡潔な識別子からコンテストのURLを生成することをサポートします。
 
@@ -23,6 +23,8 @@
 
     ```shell
     pip3 install online-judge-tools
+    # or use uv
+    uv tool install online-judge-tools
     ```
 
 ## インストール
@@ -30,7 +32,7 @@
 npmレジストリからインストール:
 
 ```shell
-bun install -g oj-short
+bun install -g oj-short@latest
 ```
 
 または、配布されている[コンパイル済みのバイナリ](https://github.com/e6nlaq/oj-short/releases)を利用してください。
@@ -46,7 +48,7 @@ bun install -g oj-short
 **コマンド:**
 
 ```shell
-get <site> <contest> [problem]
+get <site> <contest> [problem] [options]
 ```
 
 **引数:**
@@ -71,6 +73,10 @@ get <site> <contest> [problem]
 - `<contest>`: コンテストID。
 - `[problem]`: 問題ID（一部のサイトではオプション）。
 
+**オプション:**
+
+- `-s, --submit`: 提出を有効にします。
+
 **例:**
 
 ```shell
@@ -86,7 +92,7 @@ get ac abc100 a
 
 ### `subm`
 
-解答ファイルをテストし ~~、提出し~~ ます。
+解答ファイルをテストし、提出します。
 
 **コマンド:**
 
