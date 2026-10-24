@@ -209,3 +209,4 @@ dist/
 test/
 bin/
 dump/
+.bun-cache

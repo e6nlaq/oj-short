@@ -1,11 +1,11 @@
 {
-    "run": {
-        ".py": {
-            "build": "",
-            "run": "uv run $0",
-            "lang": 5063
-        }
-    },
-    "submit": true,
-    "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
+  "run": {
+    ".py": {
+      "build": "",
+      "run": "uv run $0",
+      "lang": 5063
+    }
+  },
+  "submit": true,
+  "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
 }

@@ -21,11 +21,11 @@ Before using `oj-short`, you need to install the following:
 1. **[Bun](https://bun.sh/)**: This project uses the Bun runtime.
 2. **[online-judge-tools](https://github.com/online-judge-tools/oj)**: A core dependency for interacting with online judges.
 
-    ```shell
-    pip3 install online-judge-tools
-    # or use uv
-    uv tool install online-judge-tools
-    ```
+   ```shell
+   pip3 install online-judge-tools
+   # or use uv
+   uv tool install online-judge-tools
+   ```
 
 ## Installation
 
@@ -70,6 +70,7 @@ get <site> <contest> [problem] [options]
   - `lc`, `librarychecker`: Library Checker
 
   - `url`: Direct URL input
+
 - `<contest>`: Contest ID.
 - `[problem]`: Problem ID (optional for some sites).
 
@@ -132,15 +133,15 @@ The configuration file format is as follows:
 
 ```json
 {
-    "run": {
-        ".py": {
-            "build": "",
-            "run": "python3 $0",
-            "lang": 5063
-        }
-    },
-    "submit": false,
-    "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
+  "run": {
+    ".py": {
+      "build": "",
+      "run": "python3 $0",
+      "lang": 5063
+    }
+  },
+  "submit": false,
+  "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
 }
 ```
 

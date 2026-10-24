@@ -21,11 +21,11 @@
 1. **[Bun](https://bun.sh/)**: このプロジェクトはBunランタイムを使用します。
 2. **[online-judge-tools](https://github.com/online-judge-tools/oj)**: オンラインジャッジと対話するためのコア依存関係です。
 
-    ```shell
-    pip3 install online-judge-tools
-    # or use uv
-    uv tool install online-judge-tools
-    ```
+   ```shell
+   pip3 install online-judge-tools
+   # or use uv
+   uv tool install online-judge-tools
+   ```
 
 ## インストール
 
@@ -70,6 +70,7 @@ get <site> <contest> [problem] [options]
   - `lc`, `librarychecker`: Library Checker
 
   - `url`: 直接URLを入力
+
 - `<contest>`: コンテストID。
 - `[problem]`: 問題ID（一部のサイトではオプション）。
 
@@ -132,15 +133,15 @@ subm main.py --yes
 
 ```json
 {
-    "run": {
-        ".py": {
-            "build": "",
-            "run": "python3 $0",
-            "lang": 5063
-        }
-    },
-    "submit": false,
-    "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
+  "run": {
+    ".py": {
+      "build": "",
+      "run": "python3 $0",
+      "lang": 5063
+    }
+  },
+  "submit": false,
+  "problem_url": "https://atcoder.jp/contests/abc100/tasks/abc100_a"
 }
 ```
 
