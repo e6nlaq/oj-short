@@ -11,3 +11,5 @@ README.ja.md
 commitlint.config.js
 .husky
 .vscode
+.bun-cache
+mise.toml
